@@ -128,10 +128,7 @@ if __name__ == '__main__':
         train_transforms.append(transforms.ColorJitter(brightness=0.3, contrast=0.3, saturation=0.3, hue=0.1))
 
     if 'randomexpand' in args.augment:
-        if args.image_size <= 384:
-            train_transforms.append(RandomExpand(scales=(1.0, 3.0)))
-        else:
-            train_transforms.append(RandomExpand(scales=(1.0, 2.0)))
+        train_transforms.append(RandomExpand(scales=(1.0, 3.0)))
     
     train_transforms += [
         ResizedRandomCrop(args.image_size),
