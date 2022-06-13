@@ -20,12 +20,12 @@ Follow instructions in <http://host.robots.ox.ac.uk/pascal/VOC/voc2012/#devkit>.
 
 ## Train and evaluate the model.
 
-### 1. Train Semformer for generating CAMs
+### 1. Train SemFormer for generating CAMs
 1.1 Train CAAE.
 ```bash
 CUDA_VISIBLE_DEVICES=0,1 python train_caae.py --tag CAAE@DeiT-B-Dist
 ```
-1.2 Train Semformer.
+1.2 Train SemFormer.
 ```bash
 CUDA_VISIBLE_DEVICES=0,1 python train_semformer.py --tag SemFormer@CAAE@DeiT-B-Dist
 ```
