@@ -52,10 +52,20 @@ python make_affinity_labels.py --experiment_name SemFormer@CAAE@DeiT-B-Dist@trai
 CUDA_VISIBLE_DEVICES=0,1 python train_affinitynet.py --tag AffinityNet@SemFormer --label_name SemFormer@CAAE@DeiT-B-Dist@train@scale=0.5,1.0,1.5,2.0@aff_fg=0.11_bg=0.15
 ```
 
-### 4. Train and Evaluate the segmentation model using the pseudo-labels
+### 4. Make pseudo labels.
+4.1 Inference random walk (affinitynet) to refine the generated CAMs.
+```bash
+CUDA_VISIBLE_DEVICES=0 python inference_rw.py --model_name AffinityNet@SemFormer --cam_dir SemFormer@CAAE@DeiT-B-Dist@train@scale=0.5,1.0,1.5,2.0 --domain train_aug
+```
+4.2 Apply CRF to generate pseudo labels.
+```bash
+python make_pseudo_labels.py --experiment_name AffinityNet@SemFormer@train@beta=10@exp_times=8@rw --domain train_aug --crf_iteration 1
+```
+
+### 5. Train and Evaluate the segmentation model using the pseudo labels
 Please follow the instructions in [this repo](https://github.com/YudeWang/semantic-segmentation-codebase) to train and evaluate the segmentation model.
 
-### 5. Results
+### 6. Results
 Qualitative segmentation results on PASCAL VOC 2012 (mIoU (%)). Supervision: pixel-level ($\mathcal{F}$), box-level ($\mathcal{B}$), saliency-level ($\mathcal{S}$), and image-level ($\mathcal{I}$).
 
 | Method  |  Publication  |  Supervision  |  *val*  |  *test*  |
