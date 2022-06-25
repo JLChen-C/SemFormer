@@ -30,7 +30,7 @@ CUDA_VISIBLE_DEVICES=0,1 python train_caae.py --tag CAAE@DeiT-B-Dist
 CUDA_VISIBLE_DEVICES=0,1 python train_semformer.py --tag SemFormer@CAAE@DeiT-B-Dist
 ```
 
-Or use the checkpoint we porvide in [experiments/models/SemFormer@CAAE@DeiT-B-Dist.pth](https://github.com/JLChen-C/SemFormer/blob/main/experiments/models/SemFormer%40CAAE%40DeiT-B-Dist.pth).
+Or use the checkpoint we porvide in experiments/models/SemFormer@CAAE@DeiT-B-Dist.pth.
 
 ### 2. Inference SemFormer for generating CAMs
 ```bash
